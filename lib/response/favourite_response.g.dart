@@ -6,13 +6,14 @@ part of 'favourite_response.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-FavouriteResponse _$FavouriteResponseFromJson(Map<String, dynamic> json) =>
-    FavouriteResponse(
-      success: json['success'] as bool?,
-      data: (json['data'] as List<dynamic>?)
-          ?.map((e) => Favourite.fromJson(e as Map<String, dynamic>))
-          .toList(),
-    );
+FavouriteResponse _$FavouriteResponseFromJson(Map<String, dynamic> json) {
+  return FavouriteResponse(
+    success: json['success'] as bool?,
+    data: (json['data'] as List<dynamic>?)
+        ?.map((e) => Favourite.fromJson(e as Map<String, dynamic>))
+        .toList(),
+  );
+}
 
 Map<String, dynamic> _$FavouriteResponseToJson(FavouriteResponse instance) =>
     <String, dynamic>{

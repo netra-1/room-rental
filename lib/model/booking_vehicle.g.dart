@@ -6,19 +6,20 @@ part of 'booking_vehicle.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-BookingVehicle _$BookingVehicleFromJson(Map<String, dynamic> json) =>
-    BookingVehicle(
-      user_id: json['user_id'] as String?,
-      vehicle_id: json['vehicle_id'] == null
-          ? null
-          : Vehicle.fromJson(json['vehicle_id'] as Map<String, dynamic>),
-      booking_date: json['booking_date'] as String?,
-      booking_time: json['booking_time'] as String?,
-      address: json['address'] as String?,
-      contact_no: json['contact_no'] as String?,
-      no_of_days: json['no_of_days'] as int?,
-      status: json['status'] as String?,
-    )..id = json['_id'] as String?;
+BookingVehicle _$BookingVehicleFromJson(Map<String, dynamic> json) {
+  return BookingVehicle(
+    user_id: json['user_id'] as String?,
+    vehicle_id: json['vehicle_id'] == null
+        ? null
+        : Vehicle.fromJson(json['vehicle_id'] as Map<String, dynamic>),
+    booking_date: json['booking_date'] as String?,
+    booking_time: json['booking_time'] as String?,
+    address: json['address'] as String?,
+    contact_no: json['contact_no'] as String?,
+    no_of_days: json['no_of_days'] as int?,
+    status: json['status'] as String?,
+  )..id = json['_id'] as String?;
+}
 
 Map<String, dynamic> _$BookingVehicleToJson(BookingVehicle instance) =>
     <String, dynamic>{

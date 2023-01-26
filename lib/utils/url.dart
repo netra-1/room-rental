@@ -10,13 +10,19 @@ const updateProfileUrl = "user/update_profile";
 const updateImageUrl = "user/update_profile_img";
 const updatePasswordUrl = "password/update";
 
-const vehicleUrl = 'vehicle/get';
-const featuredVehicleUrl = 'vehicle/get/';
+const addVehicleUrl = 'vehicle/insert';
+
+const vehicleUrl = '/vehicle/get/all/ok';
+const featuredVehicleUrl = '/vehicle/get/all/ok';
 const bookingUrl = "booking/add/";
 const getBookingUrl = "/user/booking/get";
 const getBookingDetailsUrl = "/booking/get/details/";
 const deleteBookingUrl = "/booking/delete/";
 const updateBookingUrl = "/booking/update/";
+
+const biddingUrl = "bidding/add/";
+const updateBiddingUrl = "bidding/update/";
+const getBiddingUrl = "bidding/get/";
 
 const addReviewUrl = "review/insert/";
 const getReviewUrl = "review/get/";

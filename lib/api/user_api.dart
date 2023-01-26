@@ -5,6 +5,7 @@ import 'package:dio_http_cache/dio_http_cache.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:mime/mime.dart';
 import 'package:nrental/api/http_services.dart';
+import 'package:nrental/model/vehicle.dart';
 import 'package:nrental/response/login_response.dart';
 import 'package:nrental/response/user_response.dart';
 import 'package:nrental/utils/url.dart';
@@ -25,6 +26,52 @@ class UserApi {
       );
 
       if (response.statusCode == 201) {
+        return isRegister = true;
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+    return isRegister;
+  }
+
+  Future<bool> registerVehicle(Vehicle vehicle, File? image) async {
+    bool isRegister = false;
+    Response response;
+    var url = baseUrl + addVehicleUrl;
+    var dio = HttpServices().getDioInstance();
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.getString("token");
+    String? token = prefs.getString("token");
+    try {
+      FormData formData = FormData.fromMap({
+        "vehicle_name": vehicle.vehicle_name,
+        "vehicle_category": vehicle.vehicle_category,
+        "vehicle_company": vehicle.vehicle_company,
+        "vehicle_desc": vehicle.vehicle_desc,
+        "vehicle_rich_desc": vehicle.vehicle_rich_desc,
+        "is_featured": vehicle.is_featured,
+        "booking_cost": vehicle.booking_cost,
+        "vehicle_sku": vehicle.vehicle_sku,
+        "v_img": await MultipartFile.fromFile(
+          image!.path,
+          filename: image.path.split("/").last,
+          contentType: MediaType(
+            "image",
+            "jpeg",
+          ),
+        ),
+      });
+      response = await dio.post(url,
+          data: formData,
+          options: Options(
+            headers: {
+              HttpHeaders.authorizationHeader: "Bearer $token",
+            },
+          ));
+
+      debugPrint(response.toString());
+
+      if (response.statusCode == 200) {
         return isRegister = true;
       }
     } catch (e) {

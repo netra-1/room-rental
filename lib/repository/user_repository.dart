@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:nrental/api/user_api.dart';
+import 'package:nrental/model/vehicle.dart';
 import 'package:nrental/response/user_response.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -9,6 +10,10 @@ import '../model/user.dart';
 class UserRepository {
   Future<bool> registerUser(User user) async {
     return await UserApi().registerUser(user);
+  }
+
+  Future<bool> registerVehicle(Vehicle user, File? image) async {
+    return await UserApi().registerVehicle(user, image);
   }
 
   Future<bool> updateProfile(User user) async {

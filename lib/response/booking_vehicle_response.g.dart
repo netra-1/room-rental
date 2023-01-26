@@ -7,13 +7,14 @@ part of 'booking_vehicle_response.dart';
 // **************************************************************************
 
 BookingVehicleResponse _$BookingVehicleResponseFromJson(
-        Map<String, dynamic> json) =>
-    BookingVehicleResponse(
-      success: json['success'] as bool?,
-      data: (json['data'] as List<dynamic>?)
-          ?.map((e) => BookingVehicle.fromJson(e as Map<String, dynamic>))
-          .toList(),
-    );
+    Map<String, dynamic> json) {
+  return BookingVehicleResponse(
+    success: json['success'] as bool?,
+    data: (json['data'] as List<dynamic>?)
+        ?.map((e) => BookingVehicle.fromJson(e as Map<String, dynamic>))
+        .toList(),
+  );
+}
 
 Map<String, dynamic> _$BookingVehicleResponseToJson(
         BookingVehicleResponse instance) =>

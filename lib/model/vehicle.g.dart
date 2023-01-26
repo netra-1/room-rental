@@ -6,17 +6,19 @@ part of 'vehicle.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-Vehicle _$VehicleFromJson(Map<String, dynamic> json) => Vehicle(
-      vehicle_name: json['vehicle_name'] as String?,
-      vehicle_image: json['vehicle_image'] as String?,
-      vehicle_company: json['vehicle_company'] as String?,
-      vehicle_desc: json['vehicle_desc'] as String?,
-      booking_cost: json['booking_cost'] as String?,
-      vehicle_sku: json['vehicle_sku'] as String?,
-      vehicle_category: json['vehicle_category'] as String?,
-      is_featured: json['is_featured'] as bool?,
-      vehicle_rich_desc: json['vehicle_rich_desc'] as String?,
-    )..id = json['_id'] as String?;
+Vehicle _$VehicleFromJson(Map<String, dynamic> json) {
+  return Vehicle(
+    vehicle_name: json['vehicle_name'] as String?,
+    vehicle_image: json['vehicle_image'] as String?,
+    vehicle_company: json['vehicle_company'] as String?,
+    vehicle_desc: json['vehicle_desc'] as String?,
+    booking_cost: json['booking_cost'] as String?,
+    vehicle_sku: json['vehicle_sku'] as String?,
+    vehicle_category: json['vehicle_category'] as String?,
+    is_featured: json['is_featured'] as bool?,
+    vehicle_rich_desc: json['vehicle_rich_desc'] as String?,
+  )..id = json['_id'] as String?;
+}
 
 Map<String, dynamic> _$VehicleToJson(Vehicle instance) => <String, dynamic>{
       '_id': instance.id,

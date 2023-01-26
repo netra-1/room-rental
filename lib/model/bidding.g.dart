@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'booking.dart';
+part of 'bidding.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-Booking _$BookingFromJson(Map<String, dynamic> json) {
-  return Booking(
+Bidding _$BiddingFromJson(Map<String, dynamic> json) {
+  return Bidding(
     user_id: json['user_id'] as String?,
     vehicle_id: json['vehicle_id'] as String?,
     booking_date: json['booking_date'] as String?,
@@ -16,10 +16,11 @@ Booking _$BookingFromJson(Map<String, dynamic> json) {
     contact_no: json['contact_no'] as String?,
     no_of_days: json['no_of_days'] as String?,
     status: json['status'] as String?,
+    price: json['price'] as String?,
   )..id = json['_id'] as String?;
 }
 
-Map<String, dynamic> _$BookingToJson(Booking instance) => <String, dynamic>{
+Map<String, dynamic> _$BiddingToJson(Bidding instance) => <String, dynamic>{
       '_id': instance.id,
       'user_id': instance.user_id,
       'vehicle_id': instance.vehicle_id,
@@ -29,4 +30,5 @@ Map<String, dynamic> _$BookingToJson(Booking instance) => <String, dynamic>{
       'contact_no': instance.contact_no,
       'no_of_days': instance.no_of_days,
       'status': instance.status,
+      'price': instance.price,
     };

@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:dio_http_cache/dio_http_cache.dart';
+import 'package:flutter/material.dart';
 
 // ignore: depend_on_referenced_packages
 import 'package:nrental/api/http_services.dart';
@@ -36,6 +37,7 @@ class VehicleAPI {
           .add(DioCacheManager(CacheConfig(baseUrl: baseUrl)).interceptor);
       Response response = await dio.get(featuredVehicleUrl,
           options: buildCacheOptions(const Duration(days: 7)));
+      debugPrint(response.toString());
       if (response.statusCode == 201) {
         vehicleResponse = VehicleResponse.fromJson(response.data);
       } else {

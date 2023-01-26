@@ -213,7 +213,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                           ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                              primary: const Color.fromARGB(255, 94, 185, 255),
+                              backgroundColor:
+                                  const Color.fromARGB(255, 94, 185, 255),
                               shape: RoundedRectangleBorder(
                                 borderRadius:
                                     BorderRadius.circular(10), // <-- Radius
@@ -287,7 +288,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
                         mainAxisSpacing: 30,
-                        mainAxisExtent: 260,
+                        mainAxisExtent: 300,
                         crossAxisSpacing: 20,
                       ),
                       padding: const EdgeInsets.all(8),
@@ -428,6 +429,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget vehicleCard(vehicle) {
+    debugPrint(vehicle.toString());
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
@@ -504,7 +506,7 @@ class _HomeScreenState extends State<HomeScreen> {
               key: ValueKey('bookBtn ${vehicle.vehicle_name}'),
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  primary: const Color.fromARGB(255, 94, 196, 255),
+                  backgroundColor: const Color.fromARGB(255, 94, 196, 255),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10), // <-- Radius
                   ),
@@ -525,6 +527,30 @@ class _HomeScreenState extends State<HomeScreen> {
             const SizedBox(
               height: 5,
             ),
+            SizedBox(
+              width: 80,
+              // key: ValueKey('bookBtn ${vehicle.vehicle_name}'),
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color.fromARGB(255, 94, 196, 255),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10), // <-- Radius
+                  ),
+                ),
+                onPressed: () => {
+                  Navigator.pushNamed(context, '/biddingScreen',
+                      arguments: vehicle)
+                },
+                child: const Text(
+                  "Bid",
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(height: 5)
           ],
         ),
       ),
@@ -624,7 +650,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     height: 40,
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        primary: const Color.fromARGB(255, 94, 196, 255),
+                        backgroundColor:
+                            const Color.fromARGB(255, 94, 196, 255),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10), // <-- Radius
                         ),

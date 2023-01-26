@@ -5,11 +5,13 @@ import 'package:khalti_flutter/khalti_flutter.dart';
 import 'package:nrental/screen/about_screen.dart';
 import 'package:nrental/screen/article_details_screen.dart';
 import 'package:nrental/screen/article_screen.dart';
+import 'package:nrental/screen/bidding_screen.dart';
 import 'package:nrental/screen/booking_detail_screen.dart';
 import 'package:nrental/screen/booking_screen.dart';
 import 'package:nrental/screen/dashboard_screen.dart';
 import 'package:nrental/screen/favourite_screen.dart';
 import 'package:nrental/screen/login_screen.dart';
+import 'package:nrental/screen/owner_screem.dart';
 import 'package:nrental/screen/profile_screen.dart';
 import 'package:nrental/screen/search_screen.dart';
 import 'package:nrental/screen/splash_screen.dart';
@@ -71,6 +73,7 @@ void main() {
               '/searchScreen': (context) => const SearchScreen(),
               '/aboutScreen': (context) => const AboutScreen(),
               '/vehicleScreen': (context) => const VehicleScreen(),
+              '/biddingScreen': (context) => const BiddingScreen(),
               '/profileScreen': (context) => const ProfileScreen(),
               '/bookingScreen': (context) => const BookingScreen(),
               '/bookingDetailScreen': (context) => const BookingDetailScreen(),
@@ -87,6 +90,8 @@ void main() {
               '/wearosVehicleScreen': (context) => const WearOSVehicleScreen(),
               '/wearosVehicleDetailScreen': (context) =>
                   const WearOSVehicleDetailScreen(),
+
+              '/ownerScreen': (context) => const OwnerScreen(),
             },
           );
         }),

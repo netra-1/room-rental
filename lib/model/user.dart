@@ -1,4 +1,5 @@
 class User {
+  String? id;
   String? firstname;
   String? lastname;
   String? email;
@@ -10,6 +11,7 @@ class User {
   String? profile_img;
 
   User({
+    this.id,
     this.firstname,
     this.lastname,
     this.address,
@@ -23,6 +25,7 @@ class User {
 
   // Converting Json data from server to dart object
   factory User.fromJson(Map<String, dynamic> json) => User(
+        id: json["_id"],
         email: json["email"],
         address: json["address"],
         phone: json["phone"],
@@ -36,6 +39,7 @@ class User {
 
   // Converting dart object to Json data
   Map<String, dynamic> toJson() => {
+        "_id": id,
         "email": email,
         "address": address,
         "phone": phone,

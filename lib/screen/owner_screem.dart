@@ -3,26 +3,26 @@ import "package:curved_navigation_bar/curved_navigation_bar.dart";
 import 'package:nrental/model/user.dart';
 import 'package:nrental/repository/user_repository.dart';
 import 'package:nrental/response/user_response.dart';
+import 'package:nrental/screen/add_rooms.dart';
 import 'package:nrental/screen/booking_screen.dart';
 // import 'package:nrental/screen/favourite_screen.dart';
 import 'package:nrental/screen/home_screen.dart';
 import 'package:nrental/screen/my_biddings.dart';
 import 'package:nrental/screen/profile_screen.dart';
-import 'package:nrental/screen/search_screen.dart';
 import 'package:shake/shake.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../components/custom_shape.dart';
 import '../utils/url.dart';
 
-class DashboardScreen extends StatefulWidget {
-  const DashboardScreen({Key? key}) : super(key: key);
+class OwnerScreen extends StatefulWidget {
+  const OwnerScreen({Key? key}) : super(key: key);
 
   @override
-  State<DashboardScreen> createState() => _DashboardScreemState();
+  State<OwnerScreen> createState() => _OwnerScreenState();
 }
 
-class _DashboardScreemState extends State<DashboardScreen> {
+class _OwnerScreenState extends State<OwnerScreen> {
   final padding = const EdgeInsets.symmetric(horizontal: 20);
   final navigationKey = GlobalKey<CurvedNavigationBarState>();
   int index = 2;
@@ -30,8 +30,9 @@ class _DashboardScreemState extends State<DashboardScreen> {
   // int screenIndex =
   final screens = const [
     ProfileScreen(),
-    SearchScreen(),
+    // SearchScreen(),
     HomeScreen(),
+    AddRooms(),
     // FavouriteScreen(),
     MyBiddings(),
     BookingScreen(),
@@ -178,6 +179,15 @@ class _DashboardScreemState extends State<DashboardScreen> {
                           Navigator.pushNamed(context, '/articleScreen');
                         }),
                       ),
+                      buildMenuItem(
+                        text: "Switch Profile",
+                        icon: Icons.article,
+                        onClicked: () => setState(() {
+                          Navigator.of(context).pushNamedAndRemoveUntil(
+                              '/dashboardScreen',
+                              (Route<dynamic> route) => false);
+                        }),
+                      ),
 
                       const Divider(
                         color: Colors.white70,
@@ -201,15 +211,6 @@ class _DashboardScreemState extends State<DashboardScreen> {
                         text: "Logout",
                         icon: Icons.logout_outlined,
                         onClicked: () => _logoutUser(),
-                      ),
-
-                      buildMenuItem(
-                        text: "Switch Profile",
-                        icon: Icons.article,
-                        onClicked: () => setState(() {
-                          Navigator.of(context).pushNamedAndRemoveUntil(
-                              '/ownerScreen', (Route<dynamic> route) => false);
-                        }),
                       ),
                     ],
                   ),
@@ -341,7 +342,7 @@ class _DashboardScreemState extends State<DashboardScreen> {
   //   switch (index) {
   //     case 0:
   //       navDrawerIndex = 0;
-  //       Navigator.pushNamed(context, "/dashboardScreen",
+  //       Navigator.pushNamed(context, "/OwnerScreen",
   //           arguments: navDrawerIndex);
   //       break;
   //     case 1:

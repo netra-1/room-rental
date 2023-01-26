@@ -1,5 +1,7 @@
 import 'package:nrental/api/booking_api.dart';
+import 'package:nrental/model/bidding.dart';
 import 'package:nrental/model/booking.dart';
+import 'package:nrental/response/bidding_vehicle_response.dart';
 import 'package:nrental/response/booking_details_response.dart';
 
 import '../response/booking_vehicle_response.dart';
@@ -9,8 +11,16 @@ class BookingRepository {
     return BookingAPI().addBooking(booking, vehicleId);
   }
 
+  Future<bool> addBidding(Bidding booking, vehicleId) async {
+    return BookingAPI().addBidding(booking, vehicleId);
+  }
+
   Future<BookingVehicleResponse?> getBooking() async {
     return BookingAPI().getBooking();
+  }
+
+  Future<BiddingVehicleResponse?> getBidding() async {
+    return BookingAPI().getBidding();
   }
 
   Future<BookingDetailsResponse?> getBookingDetails(bookingId) async {
