@@ -100,12 +100,15 @@ class _LoginScreemState extends State<LoginScreen> {
               width: MediaQuery.of(context).size.width,
               color: const Color.fromARGB(255, 94, 196, 255),
               child: Column(
-                children: [
-                  const SizedBox(
-                    height: 20,
+                children: const [
+                  SizedBox(
+                    height: 30,
                   ),
                   Center(
-                    child: Image.asset("assets/images/logo.png"),
+                    child: Text(
+                      "R-Rental",
+                      style: TextStyle(fontSize: 40, color: Colors.white),
+                    ),
                   ),
                 ],
               ),

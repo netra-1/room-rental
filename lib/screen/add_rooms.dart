@@ -5,7 +5,6 @@ import 'package:image_picker/image_picker.dart';
 import 'package:nrental/model/vehicle.dart';
 import 'package:nrental/utils/show_message.dart';
 
-import '../components/custom_shape.dart';
 import '../repository/user_repository.dart';
 
 class AddRooms extends StatefulWidget {
@@ -105,55 +104,33 @@ class _AddRoomsState extends State<AddRooms> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          automaticallyImplyLeading: false,
-          toolbarHeight: 130,
-          backgroundColor: Colors.transparent,
-          elevation: 0.0,
-          flexibleSpace: ClipPath(
-            clipper: CustomShape(),
-            child: Container(
-              height: 250,
-              width: MediaQuery.of(context).size.width,
-              color: const Color.fromARGB(255, 94, 196, 255),
-              child: Column(
-                children: [
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Center(
-                    child: Image.asset("assets/images/logo.png"),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
         body: Padding(
           padding: const EdgeInsets.all(20),
           child: Form(
             key: _formKey,
             child: ListView(
               children: [
-                // GestureDetector(
-                //     child: CircleAvatar(
-                //       radius: 40,
-                //       backgroundColor: const Color.fromARGB(0, 62, 61, 61),
-                //       child: ClipOval(
-                //           child: img == null
-                //               ? Image.network(
-                //                   "https://www.nicepng.com/png/detail/136-1366211_group-of-10-guys-login-user-icon-png.png",
-                //                   fit: BoxFit.cover)
-                //               : Image.file(img!)),
-                //     ),
-                //     onTap: () {
-                //       requestCameraPermission();
-                //       showModalBottomSheet(
-                //           context: context,
-                //           builder: (BuildContext context) {
-                //             return photoPopup();
-                //           });
-                //     }),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    Icon(
+                      Icons.add_home_rounded,
+                      color: Color.fromARGB(255, 54, 146, 244),
+                      size: 30,
+                    ),
+                    SizedBox(
+                      width: 8,
+                    ),
+                    Text(
+                      "Add Listing",
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Color.fromARGB(255, 54, 143, 244),
+                      ),
+                    ),
+                  ],
+                ),
                 const SizedBox(
                   height: 30,
                 ),
@@ -249,7 +226,6 @@ class _AddRoomsState extends State<AddRooms> {
                 const SizedBox(
                   height: 30,
                 ),
-
                 const SizedBox(
                   height: 30,
                 ),

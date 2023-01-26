@@ -12,8 +12,8 @@ const updatePasswordUrl = "password/update";
 
 const addVehicleUrl = 'vehicle/insert';
 
-const vehicleUrl = '/vehicle/get/all/ok';
-const featuredVehicleUrl = '/vehicle/get/all/ok';
+const vehicleUrl = '/vehicle/get/all/ok/all';
+const featuredVehicleUrl = '/vehicle/get/all/ok/all';
 const bookingUrl = "booking/add/";
 const getBookingUrl = "/user/booking/get";
 const getBookingDetailsUrl = "/booking/get/details/";

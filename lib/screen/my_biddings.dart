@@ -24,7 +24,7 @@ class _MyBiddingsState extends State<MyBiddings> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: const [
                 Icon(
-                  Icons.car_rental_sharp,
+                  Icons.house_rounded,
                   color: Color.fromARGB(255, 54, 146, 244),
                   size: 30,
                 ),

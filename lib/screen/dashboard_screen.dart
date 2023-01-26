@@ -95,7 +95,7 @@ class _DashboardScreemState extends State<DashboardScreen> {
         size: 30,
       ),
       const Icon(
-        Icons.car_rental,
+        Icons.approval,
         size: 30,
       ),
     ];
@@ -157,7 +157,7 @@ class _DashboardScreemState extends State<DashboardScreen> {
                       ),
                       buildMenuItem(
                         text: "Bookings",
-                        icon: Icons.car_rental,
+                        icon: Icons.house_rounded,
                         onClicked: () => setState(() {
                           Navigator.of(context).pop();
                           index = 4;
@@ -167,8 +167,7 @@ class _DashboardScreemState extends State<DashboardScreen> {
                         text: "Favourites",
                         icon: Icons.bookmark_added,
                         onClicked: () => setState(() {
-                          Navigator.of(context).pop();
-                          index = 3;
+                          Navigator.pushNamed(context, '/favouriteScreen');
                         }),
                       ),
                       buildMenuItem(

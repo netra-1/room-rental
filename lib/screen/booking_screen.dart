@@ -24,7 +24,7 @@ class _BookingScreenState extends State<BookingScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: const [
                 Icon(
-                  Icons.car_rental_sharp,
+                  Icons.house_rounded,
                   color: Color.fromARGB(255, 54, 146, 244),
                   size: 30,
                 ),
@@ -249,7 +249,8 @@ class _BookingScreenState extends State<BookingScreen> {
                       key: ValueKey(
                           'viewDetailsBtn ${booking.vehicle_id.vehicle_name}'),
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Color.fromARGB(255, 94, 196, 255),
+                        backgroundColor:
+                            const Color.fromARGB(255, 94, 196, 255),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10), // <-- Radius
                         ),
