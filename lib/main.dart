@@ -10,7 +10,9 @@ import 'package:nrental/screen/booking_detail_screen.dart';
 import 'package:nrental/screen/booking_screen.dart';
 import 'package:nrental/screen/dashboard_screen.dart';
 import 'package:nrental/screen/favourite_screen.dart';
+import 'package:nrental/screen/google_map.dart';
 import 'package:nrental/screen/login_screen.dart';
+import 'package:nrental/screen/myMap.dart';
 import 'package:nrental/screen/owner_screem.dart';
 import 'package:nrental/screen/profile_screen.dart';
 import 'package:nrental/screen/search_screen.dart';
@@ -92,6 +94,8 @@ void main() {
                   const WearOSVehicleDetailScreen(),
 
               '/ownerScreen': (context) => const OwnerScreen(),
+              '/myMap': (context) => const MyMapScreen(),
+              '/mapPage': (context) => MapPage(),
             },
           );
         }),

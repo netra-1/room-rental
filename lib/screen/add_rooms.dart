@@ -71,9 +71,9 @@ class _AddRoomsState extends State<AddRooms> {
 
   _displayMessage(bool isRegister) {
     if (isRegister) {
-      displaySuccessMessage(context, "Register success");
+      displaySuccessMessage(context, "Added success");
     } else {
-      displayErrorMessage(context, "Register Failed");
+      displayErrorMessage(context, "Add Failed");
     }
   }
 
@@ -150,15 +150,7 @@ class _AddRoomsState extends State<AddRooms> {
                 const SizedBox(
                   height: 30,
                 ),
-                skuField(),
-                const SizedBox(
-                  height: 30,
-                ),
                 categoryField(),
-                const SizedBox(
-                  height: 30,
-                ),
-                companyField(),
                 const SizedBox(
                   height: 30,
                 ),
@@ -193,7 +185,7 @@ class _AddRoomsState extends State<AddRooms> {
                   child: ElevatedButton(
                     key: const ValueKey('signUpBtn'),
                     child: const Text(
-                      'Sign Up',
+                      'Save Changes',
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.w900,
@@ -210,10 +202,8 @@ class _AddRoomsState extends State<AddRooms> {
                         Vehicle vehicle = Vehicle(
                           vehicle_name: _nameController.text,
                           vehicle_category: _categoryController.text,
-                          vehicle_company: _companyController.text,
                           vehicle_desc: _descController.text,
                           vehicle_rich_desc: _richController.text,
-                          vehicle_sku: _skuController.text,
                           is_featured:
                               _featuredController.text.toLowerCase() == "true",
                           booking_cost: _bookingCostController.text,
@@ -288,8 +278,8 @@ class _AddRoomsState extends State<AddRooms> {
           fontWeight: FontWeight.w500,
         ),
         decoration: InputDecoration(
-          hintText: "Enter Rich Desc.",
-          labelText: "Rich Desc",
+          hintText: "Enter Location.",
+          labelText: "Location",
           prefixIcon: const Icon(
             Icons.account_circle_sharp,
             size: 30,

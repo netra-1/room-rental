@@ -277,7 +277,7 @@ class _BiddingScreenState extends State<BiddingScreen> {
                     textAlign: TextAlign.left,
                   ),
                   Text(
-                    'Rs. ${vehicle.booking_cost} / day',
+                    'Rs. ${vehicle.booking_cost}',
                     style: const TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.w900,
@@ -304,7 +304,7 @@ class _BiddingScreenState extends State<BiddingScreen> {
                 height: 20,
               ),
               Text(
-                "${vehicle.vehicle_desc}   Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                "${vehicle.vehicle_desc}....Velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                 style: const TextStyle(
                   fontSize: 18,
                   color: Color.fromARGB(255, 156, 156, 156),

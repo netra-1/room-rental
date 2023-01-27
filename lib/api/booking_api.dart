@@ -73,6 +73,30 @@ class BookingAPI {
     return false;
   }
 
+  Future<bool> updateBidding(
+      String price, String status, String bookingId) async {
+    try {
+      final SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.getString("token");
+      String? token = prefs.getString("token");
+      var dio = HttpServices().getDioInstance();
+      var response = await dio.put(updateBiddingUrl + bookingId,
+          data: {
+            "price": price,
+            "status": status,
+          },
+          options: Options(headers: {
+            HttpHeaders.authorizationHeader: "Bearer $token",
+          }));
+      if (response.statusCode == 201) {
+        return true;
+      }
+    } catch (e) {
+      throw Exception(e);
+    }
+    return false;
+  }
+
   Future<bool> deleteBooking(bookingId) async {
     try {
       final SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -132,6 +156,35 @@ class BookingAPI {
       dio.interceptors
           .add(DioCacheManager(CacheConfig(baseUrl: baseUrl)).interceptor);
       Response response = await dio.get(getBiddingUrl,
+          options: buildCacheOptions(const Duration(days: 7),
+              forceRefresh: true,
+              options: Options(
+                headers: {
+                  HttpHeaders.authorizationHeader: "Bearer $token",
+                },
+              )));
+      if (response.statusCode == 201) {
+        biddingVehicleResponse = BiddingVehicleResponse.fromJson(response.data);
+      } else {
+        biddingVehicleResponse = null;
+      }
+    } catch (e) {
+      throw Exception(e);
+    }
+    return biddingVehicleResponse;
+  }
+
+  Future<BiddingVehicleResponse?> getMyBidding() async {
+    Future.delayed(const Duration(seconds: 2), () {});
+    BiddingVehicleResponse? biddingVehicleResponse;
+    try {
+      final SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.getString("token");
+      String? token = prefs.getString("token");
+      var dio = HttpServices().getDioInstance();
+      dio.interceptors
+          .add(DioCacheManager(CacheConfig(baseUrl: baseUrl)).interceptor);
+      Response response = await dio.get(getMyBiddingUrl,
           options: buildCacheOptions(const Duration(days: 7),
               forceRefresh: true,
               options: Options(

@@ -487,11 +487,26 @@ class _HomeScreenState extends State<HomeScreen> {
                 fontWeight: FontWeight.w500,
               ),
             ),
+            InkWell(
+              onTap: () {
+                Navigator.pushNamed(context, '/mapPage');
+              },
+              child: Text(
+                "Location: ${vehicle.vehicle_rich_desc}",
+                style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
             const SizedBox(
               height: 5,
             ),
             Text(
-              "Rs ${vehicle.booking_cost}/day",
+              "Rs ${vehicle.booking_cost}",
               style: const TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w800,
@@ -500,55 +515,63 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             const SizedBox(
               height: 10,
+              width: 10,
             ),
-            SizedBox(
-              width: 80,
-              key: ValueKey('bookBtn ${vehicle.vehicle_name}'),
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color.fromARGB(255, 94, 196, 255),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10), // <-- Radius
+            Row(
+              children: [
+                const SizedBox(
+                  width: 10,
+                ),
+                SizedBox(
+                  width: 70,
+                  key: ValueKey('bookBtn ${vehicle.vehicle_name}'),
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color.fromARGB(255, 94, 196, 255),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10), // <-- Radius
+                      ),
+                    ),
+                    onPressed: () => {
+                      Navigator.pushNamed(context, '/vehicleScreen',
+                          arguments: vehicle)
+                    },
+                    child: const Text(
+                      "Book",
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
                   ),
                 ),
-                onPressed: () => {
-                  Navigator.pushNamed(context, '/vehicleScreen',
-                      arguments: vehicle)
-                },
-                child: const Text(
-                  "Book",
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
+                const SizedBox(
+                  width: 10,
+                ),
+                SizedBox(
+                  width: 58,
+                  // key: ValueKey('bookBtn ${vehicle.vehicle_name}'),
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color.fromARGB(255, 94, 196, 255),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10), // <-- Radius
+                      ),
+                    ),
+                    onPressed: () => {
+                      Navigator.pushNamed(context, '/biddingScreen',
+                          arguments: vehicle)
+                    },
+                    child: const Text(
+                      "Bid",
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
                   ),
                 ),
-              ),
-            ),
-            const SizedBox(
-              height: 5,
-            ),
-            SizedBox(
-              width: 80,
-              // key: ValueKey('bookBtn ${vehicle.vehicle_name}'),
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color.fromARGB(255, 94, 196, 255),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10), // <-- Radius
-                  ),
-                ),
-                onPressed: () => {
-                  Navigator.pushNamed(context, '/biddingScreen',
-                      arguments: vehicle)
-                },
-                child: const Text(
-                  "Bid",
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-              ),
+              ],
             ),
             const SizedBox(height: 5)
           ],

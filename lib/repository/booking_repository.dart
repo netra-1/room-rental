@@ -23,6 +23,10 @@ class BookingRepository {
     return BookingAPI().getBidding();
   }
 
+  Future<BiddingVehicleResponse?> getMyBidding() async {
+    return BookingAPI().getMyBidding();
+  }
+
   Future<BookingDetailsResponse?> getBookingDetails(bookingId) async {
     return BookingAPI().getBookingDetails(bookingId);
   }
@@ -33,5 +37,10 @@ class BookingRepository {
 
   Future<bool> updateBooking(Booking booking, bookingId) async {
     return await BookingAPI().updateBooking(booking, bookingId);
+  }
+
+  Future<bool> updateBidding(
+      String price, String status, String bookingId) async {
+    return await BookingAPI().updateBidding(price, status, bookingId);
   }
 }

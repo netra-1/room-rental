@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nrental/model/bidding_vehicle.dart';
 import 'package:nrental/repository/booking_repository.dart';
 import 'package:nrental/response/bidding_vehicle_response.dart';
+import 'package:nrental/utils/show_message.dart';
 import 'package:nrental/utils/url.dart';
 
 class MyBiddings extends StatefulWidget {
@@ -154,7 +155,7 @@ class _MyBiddingsState extends State<MyBiddings> {
                 SizedBox(
                   width: double.infinity,
                   child: Text(
-                    "Booking Cost: Rs ${booking.vehicle_id.booking_cost}/day",
+                    "Booking Cost: Rs ${booking.price}",
                     style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
@@ -242,31 +243,7 @@ class _MyBiddingsState extends State<MyBiddings> {
                   height: 15,
                 ),
 
-                Align(
-                  alignment: Alignment.topRight,
-                  child: Directionality(
-                    textDirection: TextDirection.rtl,
-                    child: ElevatedButton.icon(
-                      key: ValueKey(
-                          'viewDetailsBtn ${booking.vehicle_id.vehicle_name}'),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor:
-                            const Color.fromARGB(255, 94, 196, 255),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10), // <-- Radius
-                        ),
-                      ),
-                      onPressed: () {
-                        Navigator.pushNamed(context, '/bookingDetailScreen',
-                            arguments: booking.id);
-                      },
-                      icon: const Icon(Icons.arrow_left_outlined),
-                      label: const Text('View Details'),
-                    ),
-                  ),
-                ),
-
-                Column(
+                Row(
                   children: [
                     SizedBox(
                       height: 40,
@@ -293,11 +270,14 @@ class _MyBiddingsState extends State<MyBiddings> {
                         ),
                       ),
                     ),
+                    const SizedBox(width: 15),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         InkWell(
-                          onTap: () {},
+                          onTap: () {
+                            _updateBidding(booking.id);
+                          },
                           child: SizedBox(
                             height: 40,
                             width: 40,
@@ -318,75 +298,28 @@ class _MyBiddingsState extends State<MyBiddings> {
                 ),
               ],
             ),
-            // Row(
-            //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //   children: [
-            //     ElevatedButton.icon(
-            //       style: ElevatedButton.styleFrom(
-            //         primary: Colors.green,
-            //         shape: RoundedRectangleBorder(
-            //           borderRadius: BorderRadius.circular(10), // <-- Radius
-            //         ),
-            //       ),
-            //       onPressed: () {},
-            //       icon: const Icon(Icons.edit_note_sharp),
-            //       label: const Text('Update'),
-            //     ),
-            //     // ElevatedButton(
-            //     //   style: ElevatedButton.styleFrom(
-            //     //     primary: Color.fromARGB(255, 94, 196, 255),
-            //     //     shape: RoundedRectangleBorder(
-            //     //       borderRadius: BorderRadius.circular(10), // <-- Radius
-            //     //     ),
-            //     //   ),
-            //     //   child: const Text(
-            //     //     "Read more",
-            //     //     style: TextStyle(
-            //     //       fontSize: 16,
-            //     //       fontWeight: FontWeight.w500,
-            //     //     ),
-            //     //   ),
-            //     //   onPressed: () => {
-            //     //     // Navigator.pushNamed(context, '/articleDetailsScreen',
-            //     //     //     arguments: article)
-            //     //   },
-            //     // ),
-            //     // ElevatedButton(
-            //     //   style: ElevatedButton.styleFrom(
-            //     //     primary: Color.fromARGB(255, 94, 196, 255),
-            //     //     shape: RoundedRectangleBorder(
-            //     //       borderRadius: BorderRadius.circular(10), // <-- Radius
-            //     //     ),
-            //     //   ),
-
-            //     //   child: const Text(
-            //     //     "Read more",
-            //     //     style: TextStyle(
-            //     //       fontSize: 16,
-            //     //       fontWeight: FontWeight.w500,
-            //     //     ),
-            //     //   ),
-            //     //   onPressed: () => {
-            //     //     // Navigator.pushNamed(context, '/articleDetailsScreen',
-            //     //     //     arguments: article)
-            //     //   },
-            //     // ),
-            //     ElevatedButton.icon(
-            //       style: ElevatedButton.styleFrom(
-            //         primary: Color.fromARGB(255, 94, 196, 255),
-            //         shape: RoundedRectangleBorder(
-            //           borderRadius: BorderRadius.circular(10), // <-- Radius
-            //         ),
-            //       ),
-            //       onPressed: () {},
-            //       icon: const Icon(Icons.edit_note_sharp),
-            //       label: const Text('Update'),
-            //     ),
-            //   ],
-            // ),
           ),
         ],
       ),
     );
+  }
+
+  _updateBidding(String id) async {
+    bool isUpdated = await BookingRepository()
+        .updateBidding(_priceController.text, "Bidding", id);
+    if (isUpdated) {
+      _displayMessage(true);
+    } else {
+      _displayMessage(false);
+    }
+  }
+
+  _displayMessage(bool isUpdated) {
+    if (isUpdated) {
+      displaySuccessMessage(context, "Bid Success");
+      setState(() {});
+    } else {
+      displayErrorMessage(context, "Bid Failed");
+    }
   }
 }

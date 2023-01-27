@@ -12,8 +12,8 @@ const updatePasswordUrl = "password/update";
 
 const addVehicleUrl = 'vehicle/insert';
 
-const vehicleUrl = '/vehicle/get/all/ok/all';
-const featuredVehicleUrl = '/vehicle/get/all/ok/all';
+const vehicleUrl = '/vehicle/get/all/ok/all/all/ok/all/ok';
+const featuredVehicleUrl = '/vehicle/get/all/ok/all/all/ok/all/ok';
 const bookingUrl = "booking/add/";
 const getBookingUrl = "/user/booking/get";
 const getBookingDetailsUrl = "/booking/get/details/";
@@ -23,6 +23,7 @@ const updateBookingUrl = "/booking/update/";
 const biddingUrl = "bidding/add/";
 const updateBiddingUrl = "bidding/update/";
 const getBiddingUrl = "bidding/get/";
+const getMyBiddingUrl = "user/bidding/get/";
 
 const addReviewUrl = "review/insert/";
 const getReviewUrl = "review/get/";

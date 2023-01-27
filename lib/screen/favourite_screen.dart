@@ -124,7 +124,7 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
               padding: const EdgeInsets.all(10),
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  primary: const Color.fromARGB(255, 94, 180, 255),
+                  backgroundColor: const Color.fromARGB(255, 94, 180, 255),
                   shape: const CircleBorder(),
                 ),
                 onPressed: () {
@@ -190,7 +190,7 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
                 SizedBox(
                   width: double.infinity,
                   child: Text(
-                    " Rs ${favourite.vehicle_id.booking_cost}/day",
+                    " Rs ${favourite.vehicle_id.booking_cost}",
                     style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
@@ -208,7 +208,8 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
                     textDirection: TextDirection.rtl,
                     child: ElevatedButton.icon(
                       style: ElevatedButton.styleFrom(
-                        primary: const Color.fromARGB(255, 56, 189, 237),
+                        backgroundColor:
+                            const Color.fromARGB(255, 56, 189, 237),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10), // <-- Radius
                         ),

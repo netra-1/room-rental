@@ -7,7 +7,6 @@
         android:label="nrental"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
-        <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyBEkTToTl9hL51BmO2EQ7z71ucmRSaS0Ag"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -34,5 +33,8 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+
+        <meta-data android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDoR83pkKYmuS6nHWU-Fk4F2uCd2K5ZV0g"/>
     </application>
 </manifest>

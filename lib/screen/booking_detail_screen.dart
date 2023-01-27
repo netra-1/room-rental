@@ -346,7 +346,7 @@ class _BookingDetailScreenState extends State<BookingDetailScreen> {
                 textAlign: TextAlign.left,
               ),
               Text(
-                'Rs. ${booking.vehicle_id!.booking_cost} / day',
+                'Rs. ${booking.vehicle_id!.booking_cost}',
                 style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.w900,

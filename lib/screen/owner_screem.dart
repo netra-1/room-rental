@@ -7,7 +7,7 @@ import 'package:nrental/screen/add_rooms.dart';
 import 'package:nrental/screen/booking_screen.dart';
 // import 'package:nrental/screen/favourite_screen.dart';
 import 'package:nrental/screen/home_screen.dart';
-import 'package:nrental/screen/my_biddings.dart';
+import 'package:nrental/screen/my_added_biddings.dart';
 import 'package:nrental/screen/profile_screen.dart';
 import 'package:shake/shake.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -34,7 +34,7 @@ class _OwnerScreenState extends State<OwnerScreen> {
     HomeScreen(),
     AddRooms(),
     // FavouriteScreen(),
-    MyBiddings(),
+    MyAddedBiddings(),
     BookingScreen(),
   ];
   _removeDataFromSharedPref() async {
@@ -96,7 +96,7 @@ class _OwnerScreenState extends State<OwnerScreen> {
         size: 30,
       ),
       const Icon(
-        Icons.car_rental,
+        Icons.approval,
         size: 30,
       ),
     ];

@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:nrental/model/booking_vehicle.dart';
+import 'package:nrental/model/bidding_vehicle.dart';
+import 'package:nrental/model/booking.dart';
 import 'package:nrental/repository/booking_repository.dart';
+import 'package:nrental/response/bidding_vehicle_response.dart';
+import 'package:nrental/utils/show_message.dart';
 import 'package:nrental/utils/url.dart';
 
-import '../response/booking_vehicle_response.dart';
-
-class BookingScreen extends StatefulWidget {
-  const BookingScreen({Key? key}) : super(key: key);
+class MyAddedBiddings extends StatefulWidget {
+  const MyAddedBiddings({Key? key}) : super(key: key);
 
   @override
-  State<BookingScreen> createState() => _BookingScreenState();
+  State<MyAddedBiddings> createState() => _MyAddedBiddingsState();
 }
 
-class _BookingScreenState extends State<BookingScreen> {
+class _MyAddedBiddingsState extends State<MyAddedBiddings> {
+  final _priceController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,7 +34,7 @@ class _BookingScreenState extends State<BookingScreen> {
                   width: 8,
                 ),
                 Text(
-                  "Rented Rooms",
+                  "Bid Requests",
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
@@ -49,12 +51,12 @@ class _BookingScreenState extends State<BookingScreen> {
             //   height: 20,
             // ),
             // bookingCard(),
-            FutureBuilder<BookingVehicleResponse?>(
-                future: BookingRepository().getBooking(),
+            FutureBuilder<BiddingVehicleResponse?>(
+                future: BookingRepository().getBidding(),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.done) {
                     if (snapshot.hasData) {
-                      List<BookingVehicle> lstBooking = snapshot.data!.data!;
+                      List<BiddingVehicle> lstBooking = snapshot.data!.data!;
 
                       return ListView.builder(
                           shrinkWrap: true,
@@ -154,7 +156,7 @@ class _BookingScreenState extends State<BookingScreen> {
                 SizedBox(
                   width: double.infinity,
                   child: Text(
-                    "Booking Cost: Rs ${booking.vehicle_id.booking_cost}",
+                    "Booking Cost: Rs ${booking.price}",
                     style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
@@ -196,36 +198,36 @@ class _BookingScreenState extends State<BookingScreen> {
                 const SizedBox(
                   height: 10,
                 ),
-                SizedBox(
-                  width: double.infinity,
-                  child: Text(
-                    "Contact No: ${booking.contact_no}",
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: Color.fromARGB(255, 126, 125, 125),
-                    ),
-                    textAlign: TextAlign.justify,
-                  ),
-                ),
+                // SizedBox(
+                //   width: double.infinity,
+                //   child: Text(
+                //     "Contact No: ${booking.contact_no}",
+                //     style: const TextStyle(
+                //       fontSize: 16,
+                //       fontWeight: FontWeight.bold,
+                //       color: Color.fromARGB(255, 126, 125, 125),
+                //     ),
+                //     textAlign: TextAlign.justify,
+                //   ),
+                // ),
                 const SizedBox(
                   height: 10,
                 ),
-                SizedBox(
-                  width: double.infinity,
-                  child: Text(
-                    "Address: ${booking.address}",
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: Color.fromARGB(255, 126, 125, 125),
-                    ),
-                    textAlign: TextAlign.justify,
-                  ),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
+                // SizedBox(
+                //   width: double.infinity,
+                //   child: Text(
+                //     "Address: ${booking.address}",
+                //     style: const TextStyle(
+                //       fontSize: 16,
+                //       fontWeight: FontWeight.bold,
+                //       color: Color.fromARGB(255, 126, 125, 125),
+                //     ),
+                //     textAlign: TextAlign.justify,
+                //   ),
+                // ),
+                // const SizedBox(
+                //   height: 10,
+                // ),
                 SizedBox(
                   width: double.infinity,
                   child: Text(
@@ -241,100 +243,112 @@ class _BookingScreenState extends State<BookingScreen> {
                 const SizedBox(
                   height: 15,
                 ),
-                Align(
-                  alignment: Alignment.topRight,
-                  child: Directionality(
-                    textDirection: TextDirection.rtl,
-                    child: ElevatedButton.icon(
-                      key: ValueKey(
-                          'viewDetailsBtn ${booking.vehicle_id.vehicle_name}'),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor:
-                            const Color.fromARGB(255, 94, 196, 255),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10), // <-- Radius
+
+                Row(
+                  children: [
+                    SizedBox(
+                      height: 40,
+                      width: 100,
+                      child: TextFormField(
+                        controller: _priceController,
+                        // initialValue: "0",
+                        onChanged: (value) {},
+                        keyboardType: TextInputType.number,
+                        decoration: InputDecoration(
+                          labelText: "Bid",
+                          filled: true,
+                          fillColor: const Color.fromARGB(255, 241, 241, 241),
+                          border: const UnderlineInputBorder(),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(
+                                color: Color.fromARGB(0, 249, 192, 192)),
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(color: Colors.blue),
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
                         ),
                       ),
-                      onPressed: () {
-                        Navigator.pushNamed(context, '/bookingDetailScreen',
-                            arguments: booking.id);
-                      },
-                      icon: const Icon(Icons.arrow_left_outlined),
-                      label: const Text('View Details'),
                     ),
-                  ),
-                ),
-                // Row(
-                //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                //   children: [
-                //     ElevatedButton.icon(
-                //       style: ElevatedButton.styleFrom(
-                //         primary: Colors.green,
-                //         shape: RoundedRectangleBorder(
-                //           borderRadius: BorderRadius.circular(10), // <-- Radius
-                //         ),
-                //       ),
-                //       onPressed: () {},
-                //       icon: const Icon(Icons.edit_note_sharp),
-                //       label: const Text('Update'),
-                //     ),
-                //     // ElevatedButton(
-                //     //   style: ElevatedButton.styleFrom(
-                //     //     primary: Color.fromARGB(255, 94, 196, 255),
-                //     //     shape: RoundedRectangleBorder(
-                //     //       borderRadius: BorderRadius.circular(10), // <-- Radius
-                //     //     ),
-                //     //   ),
-                //     //   child: const Text(
-                //     //     "Read more",
-                //     //     style: TextStyle(
-                //     //       fontSize: 16,
-                //     //       fontWeight: FontWeight.w500,
-                //     //     ),
-                //     //   ),
-                //     //   onPressed: () => {
-                //     //     // Navigator.pushNamed(context, '/articleDetailsScreen',
-                //     //     //     arguments: article)
-                //     //   },
-                //     // ),
-                //     // ElevatedButton(
-                //     //   style: ElevatedButton.styleFrom(
-                //     //     primary: Color.fromARGB(255, 94, 196, 255),
-                //     //     shape: RoundedRectangleBorder(
-                //     //       borderRadius: BorderRadius.circular(10), // <-- Radius
-                //     //     ),
-                //     //   ),
+                    const SizedBox(width: 15),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            _updateBidding(booking.id);
+                          },
+                          child: SizedBox(
+                            height: 40,
+                            width: 40,
+                            child: CircleAvatar(
+                              // backgroundColor: Colors.white,
+                              backgroundColor: Colors.grey[100],
 
-                //     //   child: const Text(
-                //     //     "Read more",
-                //     //     style: TextStyle(
-                //     //       fontSize: 16,
-                //     //       fontWeight: FontWeight.w500,
-                //     //     ),
-                //     //   ),
-                //     //   onPressed: () => {
-                //     //     // Navigator.pushNamed(context, '/articleDetailsScreen',
-                //     //     //     arguments: article)
-                //     //   },
-                //     // ),
-                //     ElevatedButton.icon(
-                //       style: ElevatedButton.styleFrom(
-                //         primary: Color.fromARGB(255, 94, 196, 255),
-                //         shape: RoundedRectangleBorder(
-                //           borderRadius: BorderRadius.circular(10), // <-- Radius
-                //         ),
-                //       ),
-                //       onPressed: () {},
-                //       icon: const Icon(Icons.edit_note_sharp),
-                //       label: const Text('Update'),
-                //     ),
-                //   ],
-                // ),
+                              child: const Center(
+                                child: Icon(Icons.send_and_archive_sharp,
+                                    size: 22),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            Booking myBooking = Booking(
+                              booking_date: "2023-12-09",
+                              booking_time: "12:12",
+                              address: "Lazimpat",
+                              contact_no: "9840171407",
+                              no_of_days: "1",
+                            );
+                            _addBooking(myBooking, booking.vehicle_id.id);
+                          },
+                          child: const SizedBox(
+                              height: 120, width: 120, child: Text("Accept")),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ],
             ),
-          )
+          ),
         ],
       ),
     );
+  }
+
+  _updateBidding(String id) async {
+    bool isUpdated = await BookingRepository()
+        .updateBidding(_priceController.text, "Bidding", id);
+    if (isUpdated) {
+      _displayMessage(true);
+    } else {
+      _displayMessage(false);
+    }
+  }
+
+  _addBooking(Booking booking, String vehicleId) async {
+    bool isUpdated = await BookingRepository().addBooking(booking, vehicleId);
+    if (isUpdated) {
+      _displayMessage(true);
+    } else {
+      _displayMessage(false);
+    }
+  }
+
+  _displayMessage(bool isUpdated) {
+    if (isUpdated) {
+      displaySuccessMessage(context, "Bid Success");
+      setState(() {});
+    } else {
+      displayErrorMessage(context, "Bid Failed");
+    }
   }
 }
